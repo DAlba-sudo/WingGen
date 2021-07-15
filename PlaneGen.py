@@ -78,7 +78,8 @@ class PlaneGen():
         while not placed >= 20:
             wing, placed = PlaneGen.__randomFill()
 
-        PlaneGen.printWing(wing)
-
+        return wing
+        
 if __name__=="__main__":
-    PlaneGen.createWing()
+    wing = PlaneGen.createWing()
+    wing[0]
