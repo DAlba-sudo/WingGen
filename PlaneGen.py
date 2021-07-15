@@ -2,6 +2,7 @@ from typing import Tuple
 import numpy as np
 import random
 
+
 class PlaneGen():
     # parameters for wing creation
     X_MAX = 60
