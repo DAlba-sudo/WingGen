@@ -79,7 +79,3 @@ class PlaneGen():
             wing, placed = PlaneGen.__randomFill()
 
         return wing
-        
-if __name__=="__main__":
-    wing = PlaneGen.createWing()
-    wing[0]
