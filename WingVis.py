@@ -29,19 +29,16 @@ class WingVis():
         height = 700
         top.minsize(width, height)
         canvas = tkinter.Canvas(top, bg="white", width=width, height=height)
-        canvas1 = tkinter.Canvas(top, bg="white", width=width, height=height)
+        # canvas1 = tkinter.Canvas(top, bg="white", width=width, height=height)
         tkinter.Toplevel(top)
-        tkinter.Label(canvas1, text="This is the other window").pack()
         canvas = self.draw_squares(canvas, wing, width, height)
-        canvas1 = self.draw_graph(canvas1, width, fitness_matrix, height)
+        # canvas1 = self.draw_graph(canvas1, width, fitness_matrix, height)
         canvas.pack()
-
+        # canvas1.pack()
         top.mainloop()
 
 
-
     def draw_squares(self, canvas, wing, width, height):
-        width = width-500
         x_max = 0
         y_max = 0
 
@@ -70,9 +67,9 @@ class WingVis():
         return canvas
 
     def draw_graph(self, canvas, width, fitness_matrix, height):
-        print(width)
-        print(height)
-        print('hi')
+        db.print(width)
+        db.print(height)
+        db.print('hi')
         canvas.create_line(0, height, width, height)
         canvas.create_line(5, 0, 5, height)
         for i in range(len(RANKINGS)):
@@ -102,7 +99,7 @@ class WingVis():
 
     def draw_ranks(self, canvas, width, height, fitness_matrix):
         #self.draw_graph(canvas, width, fitness_matrix, height)
-        print('hello')
+        db.print('hello')
         width = canvas.winfo_width()
         height = canvas.winfo_height()
         canvas_height = height - (2 * GRAPH_MARGIN_SIZE)

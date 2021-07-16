@@ -71,27 +71,8 @@ class PlaneGen():
     
     # crops the wing matrix
     def __filterWing(wing: np.ndarray):
-        newWing = PlaneGen.__createEmpty()
-
-        x_max = 0
-        y_max = 0
-
-        for c in range(len(wing[0])):
-            counter = 0
-            for r in range(len(wing)):
-                if wing[r][c] == 1:
-                    counter += 1
-            
-            if counter > 0:
-                y_max += 1
-
-            x_max = max(counter, x_max)
-        
-        # acts as a cropping 
-        for r in range(len(wing)):
-            for c in range(len(wing[0])):
-                if wing[r][c] == 1:
-                    pass
+        return wing
+                    
     
     # util method for printing wings
     def printWing(wing: np.ndarray):
@@ -114,4 +95,4 @@ class PlaneGen():
             wing, placed = PlaneGen.__randomFill()
 
         # filter wing to reduce size
-        return __filterWing(wing)
+        return PlaneGen.__filterWing(wing)
