@@ -1,7 +1,9 @@
 # Important Imports
+from tkinter.constants import Y
 from PlaneGen import PlaneGen
 import numpy as np
 from debug import Debug as db
+from settings import X_MOD, Y_MOD
 
 import tkinter as tkinter
 from math import floor
@@ -26,13 +28,12 @@ class WingVis():
     def draw_grid_canvas(self, wing, ROW_NUM, COL_NUM, fitness_matrix):
         self.top.attributes('-fullscreen', True)
 
-
-        width = 1000
-        height = 500
+        width = 1000 * X_MOD
+        height = 500 * Y_MOD
         self.top.minsize(width, height)
         canvas = tkinter.Canvas(self.top, bg="white", width=width, height=height)
         canvas = self.draw_squares(canvas, wing, width, height)
-        canvas = self.draw_graph(canvas, width, fitness_matrix, height)
+        # canvas = self.draw_graph(canvas, width, fitness_matrix, height)
         canvas.pack(fill=tkinter.BOTH, expand=True)
         self.top.bind('<Escape>', self.toggle_fs)
         self.top.mainloop()

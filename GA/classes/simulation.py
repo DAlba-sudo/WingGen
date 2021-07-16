@@ -92,7 +92,7 @@ class Simulation():
         # makes them relative
         for i in range(len(self.popPool)):
             # get the raw fit and make rel
-            self.popPool[i].setRelFit( (self.popPool[i].getFitness() / max_fit) )
+            self.popPool[i].setFitness( (self.popPool[i].getFitness() / max_fit) )
 
     # deletes individuals not fit for selection
     def __deathRow(self):

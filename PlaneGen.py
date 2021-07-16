@@ -2,7 +2,7 @@ from tkinter.constants import X
 from typing import Tuple
 import numpy as np
 import random
-from settings import MINIMUM_BLOCKS_IN_WING
+from settings import MINIMUM_BLOCKS_IN_WING, Y_MAX
 
 
 class PlaneGen():
@@ -72,7 +72,6 @@ class PlaneGen():
     # crops the wing matrix
     def __filterWing(wing: np.ndarray):
         return wing
-                    
     
     # util method for printing wings
     def printWing(wing: np.ndarray):

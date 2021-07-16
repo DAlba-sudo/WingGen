@@ -1,6 +1,8 @@
 from PlaneGen import PlaneGen
 from WingVis import WingVis
+from debug import Debug
 
+db = Debug()
 vis = WingVis()
 wing = PlaneGen.createWing()
 

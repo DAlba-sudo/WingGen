@@ -1,8 +1,7 @@
 
 # simulation related settings
-
-POPULATION_SIZE             = 10       # size of initial population
-DEATH_THRESH                = 0.25       # number of agents killed
+POPULATION_SIZE             = 100       # size of initial population
+DEATH_THRESH                = 0.7       # number of agents killed
 
 # wing related settings
 MINIMUM_BLOCKS_IN_WING      = 30        # min blocks that must be in wing
@@ -12,3 +11,4 @@ SPAWN_RATE_BLOCK            = 0.50
 
 # misc. settings
 DEBUG = False
+X_MOD, Y_MOD = 1, 1
