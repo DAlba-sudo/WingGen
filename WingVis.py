@@ -30,12 +30,14 @@ class WingVis():
         top.minsize(width, height)
         canvas = tkinter.Canvas(top, bg="white", width=width, height=height)
         canvas1 = tkinter.Canvas(top, bg="white", width=width, height=height)
+        tkinter.Toplevel(top)
+        tkinter.Label(canvas1, text="This is the other window").pack()
         canvas = self.draw_squares(canvas, wing, width, height)
-        canvas1 = self.draw_ranks(canvas1, width, height, fitness_matrix)
         canvas.pack()
-        canvas1.pack()
-        canvas1.mainloop()
-        canvas.mainloop()
+
+        top.mainloop()
+
+
 
     def draw_squares(self, canvas, wing, width, height):
         width = width-500
