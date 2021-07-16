@@ -1,3 +1,4 @@
+from tkinter.constants import X
 from typing import Tuple
 import numpy as np
 import random
@@ -16,6 +17,14 @@ class PlaneGen():
     # creates an empty numpy array (which represents the wing as a matrix)
     def __createEmpty() -> np.ndarray:
         return np.zeros((PlaneGen.X_MAX, PlaneGen.Y_MAX))
+
+    def __convert(wing: np.ndarray) -> list:
+        wingOneD = []
+        for r in range(len(wing)):
+            for c in range(len(wing[0])):
+                wingOneD.append(wing[r][c])
+        
+        return wingOneD
 
     # randomly fills said array
     def __randomFill() -> Tuple[np.ndarray, int]:
@@ -77,5 +86,8 @@ class PlaneGen():
         wing, placed = PlaneGen.__randomFill()
         while not placed >= 20:
             wing, placed = PlaneGen.__randomFill()
+
+        # filter wing to reduce size
+
 
         return wing
