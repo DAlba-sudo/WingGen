@@ -15,7 +15,7 @@ MAX_RANK = 1000
 
 class WingVis():
     def __init__(self) -> None:
-        pass
+        self.top = tkinter.Tk()
 
     def visualize(self, wing: np.ndarray, fitness_matrix: list):
         # basic vars
@@ -24,21 +24,29 @@ class WingVis():
         self.draw_grid_canvas(wing, ROW_NUM, COL_NUM, fitness_matrix)
 
     def draw_grid_canvas(self, wing, ROW_NUM, COL_NUM, fitness_matrix):
-        top = tkinter.Tk()
-        width = 1500
-        height = 700
-        top.minsize(width, height)
-        canvas = tkinter.Canvas(top, bg="white", width=width, height=height)
-        # canvas1 = tkinter.Canvas(top, bg="white", width=width, height=height)
-        tkinter.Toplevel(top)
+        self.top.attributes('-fullscreen', True)
+
+
+        width = 1000
+        height = 500
+        self.top.minsize(width, height)
+        canvas = tkinter.Canvas(self.top, bg="white", width=width, height=height)
         canvas = self.draw_squares(canvas, wing, width, height)
-        # canvas1 = self.draw_graph(canvas1, width, fitness_matrix, height)
-        canvas.pack()
-        # canvas1.pack()
-        top.mainloop()
+        canvas = self.draw_graph(canvas, width, fitness_matrix, height)
+        canvas.pack(fill=tkinter.BOTH, expand=True)
+        self.top.bind('<Escape>', self.toggle_fs)
+        self.top.mainloop()
+
+    def toggle_fs(self, dummy=None):
+        state = False if self.top.attributes('-fullscreen') else True
+        self.top.attributes('-fullscreen', state)
+        if not state:
+            self.top.geometry('300x300+100+100')
 
 
     def draw_squares(self, canvas, wing, width, height):
+        width = width/2
+        height = height/2
         x_max = 0
         y_max = 0
 
@@ -67,16 +75,20 @@ class WingVis():
         return canvas
 
     def draw_graph(self, canvas, width, fitness_matrix, height):
-        db.print(width)
-        db.print(height)
-        db.print('hi')
-        canvas.create_line(0, height, width, height)
-        canvas.create_line(5, 0, 5, height)
+        print(width)
+        print(height)
+        print('hi')
+        x1 = width/2
+        y1 = height-(height*.7)
+        x2 = x1
+        canvas.create_line(x1, height, width, height)
+        canvas.create_line(x1, y1, x1, height)
         for i in range(len(RANKINGS)):
-            canvas.create_text(width-600, height - (500+(20 * i)), anchor=tkinter.NW, text=RANKINGS[i])
+            canvas.create_text(x1 - 20, height - (35 * i), anchor=tkinter.NW, text=RANKINGS[i])
             x = self.get_x_coordinate(width, i)
-            canvas.create_line(x, height - 600, x, height - 300)
-            canvas.create_text(x, height - 300, anchor=tkinter.NW, text=RANKINGS[i])
+            canvas.create_line(x1, height - (35 * i), width, height - (35 * i))
+            #x2 += x2/10
+            #canvas.create_text(x, height - 300, anchor=tkinter.NW, text=RANKINGS[i])
         self.draw_ranks(canvas, width, height, fitness_matrix)
         return canvas
 
