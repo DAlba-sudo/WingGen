@@ -22,7 +22,13 @@ class Simulation():
     # populates the pool with random agent
     def __populate(self):
         for i in range((self.size)):
-            self.popPool.append(Agent())
+            wing = Agent()
+            self.popPool.append(wing)
+            
+            print("====== CREATING WING ======")
+            PlaneGen.printWing(wing.getGenes())
+            print("")
+
 
     # calc fitness as a func of the wind-facing surface area
     def __calcFitness(self, wing: numpy.ndarray):
@@ -49,9 +55,10 @@ class Simulation():
 
         # sets the raw fitness
         for i in range(len(self.popPool)):
-            print(i)
             # exctract wing
             wing: numpy.ndarray = self.popPool[i].getGenes()
+            print("====== RATING WING ======")
+            PlaneGen.printWing(wing)
 
             # find fitness
             fitness = self.__calcFitness(wing)
@@ -115,18 +122,14 @@ class Simulation():
             self.__deathRow()                   # weak indivs are killed
             while len(self.popPool) < self.size:
                 self.__reproduce()                  # appends child to population
-            
-            print(i)
-            
+                        
         max_fit = 0.0
         max_agent = None
 
         for i in range(len(self.popPool)):
-            print(i)
             max_fit = max(max_fit, self.popPool[i].getFitness())
             if self.popPool[i].getFitness() >= max_fit:
                 max_agent = i
 
-        print(self.popPool[max_agent])
         WingVis().visualize(self.popPool[max_agent].getGenes())
         

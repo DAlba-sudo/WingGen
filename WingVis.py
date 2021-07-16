@@ -1,9 +1,7 @@
 # Important Imports
 from PlaneGen import PlaneGen
 import numpy as np
-import sys
-import random
-import datetime
+from debug import Debug as db
 
 import tkinter as tkinter
 from math import floor
@@ -17,8 +15,8 @@ class WingVis():
         # basic vars
         ROW_NUM = len(wing)
         COL_NUM = len(wing[0])
-        # PlaneGen.printWing(wing)
-        print(wing)
+        # PlaneGen.db.printWing(wing)
+        db.print(wing)
 
         # loads the screen
         # root = tkinter.Tk()
@@ -54,22 +52,22 @@ class WingVis():
             if counter != 0:
                 count.append(counter)
             counter = 0
-        print(count)
+        db.print(count)
         for i in range(len(count)):
             if x_max < count[i]:
                 x_max = count[i]
-        print(x_max)
+        db.print(x_max)
         zoom_w = width / x_max
-        print(zoom_w)
-        print(len(count))
+        db.print(zoom_w)
+        db.print(len(count))
         zoom_h = height / len(count)
-        print(zoom_h)
+        db.print(zoom_h)
         zoom = zoom_w
-        print(zoom)
+        db.print(zoom)
         if zoom > zoom_h:
             zoom = zoom_h
         zoom = floor(zoom)
-        print(zoom)
+        db.print(zoom)
 
         for i in range(len(wing)):
             for j in range(len(wing[i])):
