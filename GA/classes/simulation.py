@@ -48,6 +48,24 @@ class Simulation():
             sum += SA
 
         return sum
+
+    # public calcfitness
+    def calcFitness(self, wing: numpy.ndarray):
+        sum = 0
+        for c in range(len(wing[0])):
+            SA = 0
+            for r in range(len(wing)):
+                # if the left of the block is a blank, 
+                # we assume it would be hit by wind
+                try:
+                    if wing[r][c-1] == 0 and wing[r][c] == 1:
+                        SA += 1
+                except IndexError:
+                    pass
+            # add the surface area
+            sum += SA
+
+        return sum
                 
     
     def __assignFitness(self):
