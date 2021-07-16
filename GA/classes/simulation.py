@@ -153,7 +153,7 @@ class Simulation():
             if self.popPool[i].getFitness() >= max_fit:
                 max_agent = i
 
-        WingVis().visualize(self.popPool[max_agent].getGenes())
-        # WingVis().visualize(self.popPool[max_agent].getGenes(), self.fitnessMatrix)
+        #WingVis().visualize(self.popPool[max_agent].getGenes())
+        WingVis().visualize(self.popPool[max_agent].getGenes(), self.fitnessMatrix)
 
         

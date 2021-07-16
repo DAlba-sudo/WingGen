@@ -33,6 +33,7 @@ class WingVis():
         tkinter.Toplevel(top)
         tkinter.Label(canvas1, text="This is the other window").pack()
         canvas = self.draw_squares(canvas, wing, width, height)
+        canvas1 = self.draw_graph(canvas1, width, fitness_matrix, height)
         canvas.pack()
 
         top.mainloop()
@@ -72,14 +73,14 @@ class WingVis():
         print(width)
         print(height)
         print('hi')
-        canvas.create_line(width-500, height - 200, width - 100, height)
-        canvas.create_line(width-600, height - 300, width - 100, \
-                           height - 300)
+        canvas.create_line(0, height, width, height)
+        canvas.create_line(5, 0, 5, height)
         for i in range(len(RANKINGS)):
             canvas.create_text(width-600, height - (500+(20 * i)), anchor=tkinter.NW, text=RANKINGS[i])
             x = self.get_x_coordinate(width, i)
             canvas.create_line(x, height - 600, x, height - 300)
             canvas.create_text(x, height - 300, anchor=tkinter.NW, text=RANKINGS[i])
+        self.draw_ranks(canvas, width, height, fitness_matrix)
         return canvas
 
     def get_x_coordinate(self, width, year_index):
@@ -100,9 +101,9 @@ class WingVis():
         return x_coordinate
 
     def draw_ranks(self, canvas, width, height, fitness_matrix):
-        self.draw_graph(canvas, width, fitness_matrix, height)
+        #self.draw_graph(canvas, width, fitness_matrix, height)
         print('hello')
-        width = canvas.winfo_width()-500
+        width = canvas.winfo_width()
         height = canvas.winfo_height()
         canvas_height = height - (2 * GRAPH_MARGIN_SIZE)
         canvas_width = width - (2 * GRAPH_MARGIN_SIZE)
@@ -120,10 +121,4 @@ class WingVis():
                                    width=LINE_WIDTH)
             canvas.create_text((x_coordinate2 + TEXT_DX), rank_y2, anchor=tkinter.SW, \
                                    text=f'Fitness: {fitness_matrix[i]}', fill='green')
-
-
-
-
-
-
         return canvas

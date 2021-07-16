@@ -1,7 +1,7 @@
 
 # simulation related settings
 
-POPULATION_SIZE             = 100       # size of initial population
+POPULATION_SIZE             = 10       # size of initial population
 DEATH_THRESH                = 0.25       # number of agents killed
 
 # wing related settings
