@@ -1,4 +1,3 @@
-
 # Important Imports
 from PlaneGen import PlaneGen
 import numpy as np
@@ -14,22 +13,20 @@ class WingVis():
     def __init__(self) -> None:
         pass
 
-
-
     def visualize(self, wing: np.ndarray):
         # basic vars
         ROW_NUM = len(wing)
         COL_NUM = len(wing[0])
-        #PlaneGen.printWing(wing)
+        # PlaneGen.printWing(wing)
         print(wing)
 
         # loads the screen
-       # root = tkinter.Tk()
+        # root = tkinter.Tk()
 
         # put labels here
 
         # starts the loop
-        #root.mainloop()
+        # root.mainloop()
         self.draw_grid_canvas(wing, ROW_NUM, COL_NUM)
 
     def draw_grid_canvas(self, wing, ROW_NUM, COL_NUM):
@@ -47,7 +44,7 @@ class WingVis():
         x_max = 0
         counter = 0
         count = []
-        
+
         x = 0
         y = 0
 
@@ -62,10 +59,10 @@ class WingVis():
             if x_max < count[i]:
                 x_max = count[i]
         print(x_max)
-        zoom_w = width/x_max
+        zoom_w = width / x_max
         print(zoom_w)
         print(len(count))
-        zoom_h = height/len(count)
+        zoom_h = height / len(count)
         print(zoom_h)
         zoom = zoom_w
         print(zoom)
@@ -83,4 +80,3 @@ class WingVis():
             y = y + zoom
         canvas.update()
         return canvas
-
