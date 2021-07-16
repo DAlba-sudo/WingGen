@@ -48,6 +48,24 @@ class Simulation():
             sum += SA
 
         return sum
+
+    # public calcfitness
+    def calcFitness(self, wing: numpy.ndarray):
+        sum = 0
+        for c in range(len(wing[0])):
+            SA = 0
+            for r in range(len(wing)):
+                # if the left of the block is a blank, 
+                # we assume it would be hit by wind
+                try:
+                    if wing[r][c-1] == 0 and wing[r][c] == 1:
+                        SA += 1
+                except IndexError:
+                    pass
+            # add the surface area
+            sum += SA
+
+        return sum
                 
     
     def __assignFitness(self):
@@ -114,7 +132,7 @@ class Simulation():
         # merges the parent and child 
         for r in range(len(child.getGenes())):
             for c in range(len(child.getGenes()[0])):
-                if p1.getGenes()[r][c] == 1 and p2.getGenes()[r][c] == 1:
+                if p1.getGenes()[r][c] == 1 or p2.getGenes()[r][c] == 1:
                     child[r][c] = 1
 
         # adds child to population
@@ -135,5 +153,7 @@ class Simulation():
             if self.popPool[i].getFitness() >= max_fit:
                 max_agent = i
 
-        WingVis().visualize(self.popPool[max_agent].getGenes(), self.fitnessMatrix)
+        WingVis().visualize(self.popPool[max_agent].getGenes())
+        # WingVis().visualize(self.popPool[max_agent].getGenes(), self.fitnessMatrix)
+
         

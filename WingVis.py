@@ -42,35 +42,29 @@ class WingVis():
     def draw_squares(self, canvas, wing, width, height):
         width = width-500
         x_max = 0
-        counter = 0
-        count = []
+        y_max = 0
 
-        x = 0
-        y = 0
-
-        for i in range(len(wing)):
-            for j in range(len(wing[i])):
-                counter += 1
-            if counter != 0:
-                count.append(counter)
+        for c in range(len(wing[0])):
             counter = 0
-        for i in range(len(count)):
-            if x_max < count[i]:
-                x_max = count[i]
-        zoom_w = width / x_max
-        zoom_h = height / len(count)
-        zoom = zoom_w
-        if zoom > zoom_h:
-            zoom = zoom_h
-        zoom = floor(zoom)
+            for r in range(len(wing)):
+                if wing[r][c] == 1:
+                    counter += 1
+            
+            if counter > 0:
+                y_max += 1
 
-        for i in range(len(wing)):
-            for j in range(len(wing[i])):
-                if wing[i][j] == 1:
-                    canvas.create_rectangle(x, y, x + zoom, y + zoom, fill="red")
-                x = x + zoom
-            x = 0
-            y = y + zoom
+            x_max = max(counter, x_max)
+
+        zoom_w = width / x_max
+        zoom_h = height / y_max
+
+        zoom = floor(min(zoom_h, zoom_w))
+
+        for r in range(len(wing)):
+            for c in range(len(wing[r])):
+                if wing[r][c] == 1:
+                    canvas.create_rectangle(c*zoom, r*zoom, zoom * c + zoom, zoom * r + zoom, fill="black", outline='red')
+
         canvas.update()
         return canvas
 
