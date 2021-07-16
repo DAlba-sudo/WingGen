@@ -132,7 +132,7 @@ class Simulation():
         # merges the parent and child 
         for r in range(len(child.getGenes())):
             for c in range(len(child.getGenes()[0])):
-                if p1.getGenes()[r][c] == 1 and p2.getGenes()[r][c] == 1:
+                if p1.getGenes()[r][c] == 1 or p2.getGenes()[r][c] == 1:
                     child[r][c] = 1
 
         # adds child to population
@@ -153,5 +153,7 @@ class Simulation():
             if self.popPool[i].getFitness() >= max_fit:
                 max_agent = i
 
-        WingVis().visualize(self.popPool[max_agent].getGenes(), self.fitnessMatrix)
+        WingVis().visualize(self.popPool[max_agent].getGenes())
+        # WingVis().visualize(self.popPool[max_agent].getGenes(), self.fitnessMatrix)
+
         

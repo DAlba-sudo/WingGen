@@ -27,6 +27,26 @@ class PlaneGen():
         
         return wingOneD
 
+    def hasNeighbor(wing: np.ndarray, r, c):
+
+        hasTop = False                  # bool stores whether neighbor is on top
+        hasBot = False                  # bool stores whether neighbor is on bot
+        hasRight = False                # bool stores whether neighbor is on right
+        hasLeft = False                 # bool stores whether neighbor is on left
+        
+        # validating that block has neighbors
+        if r+1 < len(wing):                     # if within bottom bound
+            hasBot = wing[r+1][c] == 1
+        if r-1 >= 0 and not hasTop:                 # if within top bound
+            hasTop = wing[r-1][c] == 1
+        if c-1 >= 0 and (not hasTop or not hasBot): # if within left bound
+            hasLeft = wing[r][c-1] == 1     
+                                                    # if within right bound
+        if c+1 < len(wing[0]) and (not hasTop or not hasBot or not hasLeft):
+            hasRight = wing[r][c+1] == 1
+
+        return hasTop or hasBot or hasRight or hasLeft
+
     # randomly fills said array
     def __randomFill() -> Tuple[np.ndarray, int]:
         # vars
@@ -36,35 +56,16 @@ class PlaneGen():
         # random placement loop
         for r in range(len(emptyArr)):
             for c in range(len(emptyArr[r])):
-                hasTop = False                  # bool stores whether neighbor is on top
-                hasBot = False                  # bool stores whether neighbor is on bot
-                hasRight = False                # bool stores whether neighbor is on right
-                hasLeft = False                 # bool stores whether neighbor is on left
-
                 # places genesis block regardless of neighbors
-                if placed < 6:
+                if placed < 9:
                     emptyArr[r][c] = 1
                     placed += 1
 
                 # 'great filer' (i.e., block is spawned if above threshold)
-                if random.random() >= PlaneGen.SPAWN_RATE_BLOCK:
-
-                    
-                    # validating that block has neighbors
-                    if r+1 < len(emptyArr):                     # if within bottom bound
-                        hasBot = emptyArr[r+1][c] == 1
-                    if r-1 >= 0 and not hasTop:                 # if within top bound
-                        hasTop = emptyArr[r-1][c] == 1
-                    if c-1 >= 0 and (not hasTop or not hasBot): # if within left bound
-                        hasLeft = emptyArr[r][c-1] == 1     
-                                                                # if within right bound
-                    if c+1 < len(emptyArr[0]) and (not hasTop or not hasBot or not hasLeft):
-                        hasRight = emptyArr[r][c+1] == 1
-
-                    # if has any neighbors, place
-                    if hasTop or hasBot or hasLeft or hasRight: 
-                        emptyArr[r][c] = 1
-                        placed += 1
+                # if has any neighbors, place
+                if PlaneGen.hasNeighbor(emptyArr, r, c) and random.random() >= PlaneGen.SPAWN_RATE_BLOCK: 
+                    emptyArr[r][c] = 1
+                    placed += 1
         
         return emptyArr, placed
     
