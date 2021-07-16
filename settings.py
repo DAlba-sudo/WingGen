@@ -7,7 +7,7 @@ DEATH_THRESH                = 0.25       # number of agents killed
 MINIMUM_BLOCKS_IN_WING      = 30        # min blocks that must be in wing
 X_MAX                       = 60        # max-x dimension
 Y_MAX                       = 150       # max-y dimension
-SPAWN_RATE_BLOCK            = 0.50      # 
+SPAWN_RATE_BLOCK            = 0.50       
 
 # misc. settings
 DEBUG = False
