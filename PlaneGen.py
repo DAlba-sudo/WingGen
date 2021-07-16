@@ -41,13 +41,13 @@ class PlaneGen():
                 hasRight = False                # bool stores whether neighbor is on right
                 hasLeft = False                 # bool stores whether neighbor is on left
 
+                # places genesis block regardless of neighbors
+                if placed < 6:
+                    emptyArr[r][c] = 1
+                    placed += 1
+
                 # 'great filer' (i.e., block is spawned if above threshold)
                 if random.random() >= PlaneGen.SPAWN_RATE_BLOCK:
-
-                    # places genesis block regardless of neighbors
-                    if placed == 0:
-                        emptyArr[r][c] = 1
-                        placed += 1
 
                     
                     # validating that block has neighbors

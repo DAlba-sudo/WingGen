@@ -15,6 +15,7 @@ class Simulation():
 
         # vars
         self.popPool = []
+        self.fitnessMatrix = []
 
         # init
         self.__populate()           # fills the population
@@ -66,6 +67,9 @@ class Simulation():
 
             # assign fitness
             self.popPool[i].setFitness(fitness)
+        
+        # adds the fitness to the fitness matrix
+        self.fitnessMatrix.append(max_fit)
 
         # makes them relative
         for i in range(len(self.popPool)):
@@ -131,5 +135,5 @@ class Simulation():
             if self.popPool[i].getFitness() >= max_fit:
                 max_agent = i
 
-        WingVis().visualize(self.popPool[max_agent].getGenes())
+        WingVis().visualize(self.popPool[max_agent].getGenes(), self.fitnessMatrix)
         
