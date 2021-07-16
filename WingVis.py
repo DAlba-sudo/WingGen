@@ -80,7 +80,6 @@ class WingVis():
         print('hi')
         x1 = width/2
         y1 = height-(height*.7)
-        x2 = x1
         canvas.create_line(x1, height, width, height)
         canvas.create_line(x1, y1, x1, height)
         canvas.create_line(width, y1, width, height)
