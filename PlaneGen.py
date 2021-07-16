@@ -2,7 +2,7 @@ from tkinter.constants import X
 from typing import Tuple
 import numpy as np
 import random
-from settings import MINIMUM_BLOCKS_IN_WING
+from settings import MINIMUM_BLOCKS_IN_WING, Y_MAX
 
 
 class PlaneGen():
@@ -35,7 +35,7 @@ class PlaneGen():
         hasLeft = False                 # bool stores whether neighbor is on left
         
         # validating that block has neighbors
-        if r+1 < len(wing):                     # if within bottom bound
+        if r+1 < len(wing):                         # if within bottom bound
             hasBot = wing[r+1][c] == 1
         if r-1 >= 0 and not hasTop:                 # if within top bound
             hasTop = wing[r-1][c] == 1
@@ -69,6 +69,10 @@ class PlaneGen():
         
         return emptyArr, placed
     
+    # crops the wing matrix
+    def __filterWing(wing: np.ndarray):
+        return wing
+    
     # util method for printing wings
     def printWing(wing: np.ndarray):
         for i in wing:
@@ -90,6 +94,4 @@ class PlaneGen():
             wing, placed = PlaneGen.__randomFill()
 
         # filter wing to reduce size
-
-
-        return wing
+        return PlaneGen.__filterWing(wing)

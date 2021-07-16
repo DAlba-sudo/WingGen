@@ -1,7 +1,9 @@
 # Important Imports
+from tkinter.constants import Y
 from PlaneGen import PlaneGen
 import numpy as np
 from debug import Debug as db
+from settings import X_MOD, Y_MOD
 
 import tkinter as tkinter
 from math import floor
@@ -41,7 +43,6 @@ class WingVis():
         self.top.attributes('-fullscreen', state)
         if not state:
             self.top.geometry('300x300+100+100')
-
 
 
     def draw_squares(self, canvas, wing, width, height):

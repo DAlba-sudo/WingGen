@@ -1,9 +1,16 @@
 from settings import DEBUG
+from os import path, system
 
 class Debug():
     def __init__(self) -> None:
-        pass
+        self.DATA_PATH = path.join(path.dirname(__file__), "/Data/")
+        
+        try:
+            system(f"mkdir ")
+        except (FileExistsError, NotImplementedError):
+            print(f"ERROR: File either already exists or mkdir command is incompatible!")
 
     def print(msg: str, cat="warning"):
         if DEBUG:
             print(f"{cat}: ".rjust(6) + f"{msg}")
+
