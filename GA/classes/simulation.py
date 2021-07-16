@@ -8,7 +8,7 @@ from math import floor
 class Simulation():
     DEATH_THRESH = 0.3              # percentage of population sent to death row
 
-    def __init__(self, size=10) -> None:
+    def __init__(self, size=200) -> None:
         # params
         self.size = size
 
@@ -69,7 +69,7 @@ class Simulation():
         death_num = floor( self.size * Simulation.DEATH_THRESH );
         while len(self.popPool) < death_num:
             for i in range(len(self.popPool)):
-                if self.popPool[i].getFitness() < random():
+                if self.popPool[i].getFitness() > random():
                     self.popPool.pop(i)
                     break
 
@@ -79,7 +79,7 @@ class Simulation():
         parentCount = 0
         while parentCount < 2:
             parent:Agent = choice(self.popPool)
-            if parent.getFitness() >= random():
+            if parent.getFitness() <= random():
                 parents.append(parent)
         
         return parents
@@ -111,11 +111,11 @@ class Simulation():
     def loop(self):
         for i in range(int(input("Number of generations: "))):
             self.__assignFitness()              # fitness assigned
-            # self.__deathRow()                   # weak indivs are killed
-            # while len(self.popPool) < self.size:
-            #     self.__reproduce()                  # appends child to population
+            self.__deathRow()                   # weak indivs are killed
+            while len(self.popPool) < self.size:
+                self.__reproduce()                  # appends child to population
             
-            # print(i)
+            print(i)
             
         max_fit = 0.0
         max_agent = None
