@@ -4,11 +4,12 @@ from random import choice, random
 from .agent import Agent
 from WingVis import WingVis
 from math import floor
+from settings import POPULATION_SIZE, DEATH_THRESH
 
 class Simulation():
-    DEATH_THRESH = 0.3              # percentage of population sent to death row
+    DEATH_THRESH = DEATH_THRESH            # percentage of population sent to death row
 
-    def __init__(self, size=200) -> None:
+    def __init__(self, size=POPULATION_SIZE) -> None:
         # params
         self.size = size
 

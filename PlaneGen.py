@@ -2,6 +2,7 @@ from tkinter.constants import X
 from typing import Tuple
 import numpy as np
 import random
+from settings import MINIMUM_BLOCKS_IN_WING
 
 
 class PlaneGen():
@@ -84,7 +85,7 @@ class PlaneGen():
     def createWing() -> np.ndarray:
         # init wing with proper num of placed blocks
         wing, placed = PlaneGen.__randomFill()
-        while not placed >= 20:
+        while not placed >= MINIMUM_BLOCKS_IN_WING:
             wing, placed = PlaneGen.__randomFill()
 
         # filter wing to reduce size
