@@ -3,6 +3,7 @@ from PlaneGen import PlaneGen
 from random import choice, random
 from .agent import Agent
 from WingVis import WingVis
+from graphy import GraphVis
 from math import floor
 from settings import POPULATION_SIZE, DEATH_THRESH
 
@@ -87,12 +88,21 @@ class Simulation():
             self.popPool[i].setFitness(fitness)
         
         # adds the fitness to the fitness matrix
-        self.fitnessMatrix.append(max_fit)
+        # self.fitnessMatrix.append(max_fit)
+
+        # relative fit
+        max_relFit = 0
 
         # makes them relative
         for i in range(len(self.popPool)):
+            relFit = (self.popPool[i].getFitness() / max_fit)
+
             # get the raw fit and make rel
-            self.popPool[i].setFitness( (self.popPool[i].getFitness() / max_fit) )
+            self.popPool[i].setFitness(relFit)
+
+            max_relFit = max(relFit, max_relFit)
+
+        self.fitnessMatrix.append(max_relFit)
 
     # deletes individuals not fit for selection
     def __deathRow(self):
@@ -155,5 +165,7 @@ class Simulation():
 
         #WingVis().visualize(self.popPool[max_agent].getGenes())
         WingVis().visualize(self.popPool[max_agent].getGenes(), self.fitnessMatrix)
+        GraphVis().visualize(self.popPool[max_agent].getGenes(), self.fitnessMatrix)
+
 
         
