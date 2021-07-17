@@ -75,5 +75,5 @@ class GraphVis():
                 x += move_by
                 rank_y = height - (rank_spacing * fitness_matrix[i - 1])
                 rank_y2 = height - (rank_spacing * fitness_matrix[i])
-                canvas.create_line(x_move, rank_y, x_move2, rank_y2, fill="blue")
+                canvas.create_line(x_move, rank_y, x_move2, rank_y2, fill="blue", width=3)
         return canvas
