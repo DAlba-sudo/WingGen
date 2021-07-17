@@ -41,7 +41,7 @@ class Simulation():
                 # if the left of the block is a blank, 
                 # we assume it would be hit by wind
                 try:
-                    if wing[r][c-1] == 0:
+                    if wing[r][c-1] == 0 and wing[r][c] == 1:
                         SA += 1
                 except IndexError:
                     pass
