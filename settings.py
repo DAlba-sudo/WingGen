@@ -10,5 +10,6 @@ Y_MAX                       = 60       # max-y dimension
 SPAWN_RATE_BLOCK            = 0.50       
 
 # misc. settings
+FULL_SCREEN = True
 DEBUG = True
 X_MOD, Y_MOD = 1, 1
