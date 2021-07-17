@@ -34,7 +34,7 @@ class GraphVis():
         height = 500
         self.top.minsize(width, height)
         canvas = tkinter.Canvas(self.top, bg="white", width=width, height=height)
-        canvas = self.draw_graph(canvas, width, height)
+        canvas = self.draw_graph(canvas, width, height, fitness_matrix)
         canvas = self.draw_ranks(canvas, width, height, fitness_matrix)
         if FULL_SCREEN:
             canvas.pack(fill=tkinter.BOTH, expand=True)
@@ -52,14 +52,20 @@ class GraphVis():
         else:
             self.top.geometry('300x300+100+100')
 
-    def draw_graph(self, canvas, width, height):
+    def draw_graph(self, canvas, width, height, fitness_matrix):
         canvas.create_line(30, height, width, height)
         canvas.create_line(30, 30, 30, height)
         canvas.create_line(width, 30, width, height)
         rank_y = (height - 30) / 100
+        move_y = (width - 30) / len(fitness_matrix)
+        move_y2 = 30
         for i in range(len(RANKINGS)):
             canvas.create_text(10, height - (rank_y * RANKINGS[i]), anchor=tkinter.NW, text=RANKINGS[i])
             canvas.create_line(30, height - (rank_y * RANKINGS[i]), width, height - (rank_y * RANKINGS[i]))
+        for j in range(len(fitness_matrix)):
+            x_move = move_y2
+            canvas.create_text(x_move, height, anchor=tkinter.NW, text=f"Gen {j+1}")
+            move_y2 += move_y
         return canvas
 
     def draw_ranks(self, canvas, width, height, fitness_matrix):
