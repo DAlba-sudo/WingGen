@@ -25,16 +25,16 @@ class GraphVis():
         # basic vars
         ROW_NUM = len(wing)
         COL_NUM = len(wing[0])
-        self.draw_grid_canvas(wing, ROW_NUM, COL_NUM, fitness_matrix)
+        self.draw_grid_canvas(fitness_matrix)
 
-    def draw_grid_canvas(self, wing, ROW_NUM, COL_NUM, fitness_matrix):
+    def draw_grid_canvas(self,fitness_matrix):
         if FULL_SCREEN:
             self.top.attributes('-fullscreen', True)
         width = 1000
         height = 500
         self.top.minsize(width, height)
         canvas = tkinter.Canvas(self.top, bg="white", width=width, height=height)
-        canvas = self.draw_graph(canvas, width, fitness_matrix, height)
+        canvas = self.draw_graph(canvas, width, height)
         canvas = self.draw_ranks(canvas, width, height, fitness_matrix)
         if FULL_SCREEN:
             canvas.pack(fill=tkinter.BOTH, expand=True)
@@ -52,7 +52,7 @@ class GraphVis():
         else:
             self.top.geometry('300x300+100+100')
 
-    def draw_graph(self, canvas, width, fitness_matrix, height):
+    def draw_graph(self, canvas, width, height):
         canvas.create_line(30, height, width, height)
         canvas.create_line(30, 30, 30, height)
         canvas.create_line(width, 30, width, height)
