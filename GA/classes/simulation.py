@@ -87,7 +87,7 @@ class Simulation():
             max_relFit = max(relFit, max_relFit)
 
         print(max_relFit)
-        self.fitnessMatrix.append(max_relFit)
+        self.fitnessMatrix.append(max_relFit * 100)
 
     # deletes individuals not fit for selection
     def __deathRow(self):
