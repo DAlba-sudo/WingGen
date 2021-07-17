@@ -32,8 +32,6 @@ class WingVis():
         self.top.minsize(width, height)
         canvas = tkinter.Canvas(self.top, bg="white", width=width, height=height)
         canvas = self.draw_squares(canvas, wing, width, height)
-        canvas = self.draw_graph(canvas, width, fitness_matrix, height)
-        canvas = self.draw_ranks(canvas, width, height, fitness_matrix)
         canvas.pack(fill=tkinter.BOTH, expand=True)
         self.top.bind('<Escape>', self.toggle_fs)
         self.top.mainloop()
@@ -46,8 +44,8 @@ class WingVis():
 
 
     def draw_squares(self, canvas, wing, width, height):
-        width = width/2
-        height = height/2
+        width = width
+        height = height
         x_max = 0
         y_max = 0
 
@@ -71,70 +69,6 @@ class WingVis():
             for c in range(len(wing[r])):
                 if wing[r][c] == 1:
                     canvas.create_rectangle(c*zoom, r*zoom, zoom * c + zoom, zoom * r + zoom, fill="black", outline='red')
-
-        canvas.update()
-        return canvas
-
-    def draw_graph(self, canvas, width, fitness_matrix, height):
-        print(width)
-        print(height)
-        print('hi')
-        x1 = width/2
-        y1 = height-(height*.7)
-        x2 = x1
-        canvas.create_line(x1, height, width, height)
-        canvas.create_line(x1, y1, x1, height)
-        canvas.create_line(width, y1, width, height)
-        for i in range(len(RANKINGS)):
-            canvas.create_text(x1 - 20, height - (35 * i), anchor=tkinter.NW, text=RANKINGS[i])
-            x = self.get_x_coordinate(width, i)
-            canvas.create_line(x1, height - (35 * i), width, height - (35 * i))
-            #x2 += x2/10
-            #canvas.create_text(x, height - 300, anchor=tkinter.NW, text=RANKINGS[i])
-        return canvas
-
-    def get_x_coordinate(self, width, year_index):
-        """
-        Given the width of the canvas and the index of the current year
-        in the YEARS list, returns the x coordinate of the vertical
-        line associated with that year.
-
-        Input:
-            width (int): The width of the canvas
-            year_index (int): The index of the current year in the YEARS list
-        Returns:
-            x_coordinate (float): The x coordinate of the vertical line associated
-                                  with the specified year.
-        """
-        move_by = float((width - (2 * GRAPH_MARGIN_SIZE)) / len(RANKINGS))
-        x_coordinate = float((move_by * year_index) + GRAPH_MARGIN_SIZE) + 400
-        return x_coordinate
-
-    def draw_ranks(self, canvas, width, height, fitness_matrix):
-        #self.draw_graph(canvas, width, fitness_matrix, height)
-        print('hello')
-        width1 = width/2
-        height1 = height/2
-        height = canvas.winfo_height()
-        canvas_height = height1 - (2 * GRAPH_MARGIN_SIZE)
-        canvas_width = width1 - (2 * GRAPH_MARGIN_SIZE)
-        rank_spacing = (height - (35 * 10)) / 100
-        move_by = floor(width1 / len(RANKINGS))
-        x = move_by + width1
-        for i in range(len(fitness_matrix)):
-            delta_y = rank_spacing * fitness_matrix[i]
-            x_coordinate1 = x - move_by
-            x_coordinate2 = x
-            x += move_by
-            rank_y = (rank_spacing * fitness_matrix[i-1])
-            rank_y2 = (rank_spacing * fitness_matrix[i])
-            print("yoooooooooooooooo")
-            #canvas.create_text((x_coordinate1 + TEXT_DX), rank_y, anchor=tkinter.SW, \
-                                 #  text=f'Fitness: {fitness_matrix[i]}', fill="red")
-            canvas.create_line(x_coordinate1, rank_y, x_coordinate2, rank_y2, fill="blue",
-                                   width=LINE_WIDTH)
-            #canvas.create_text((x_coordinate2 + TEXT_DX), rank_y2, anchor=tkinter.SW, \
-                                 #  text=f'Fitness: {fitness_matrix[i]}', fill='green')
 
         canvas.update()
         return canvas
