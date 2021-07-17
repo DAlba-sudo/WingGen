@@ -56,10 +56,10 @@ class GraphVis():
         canvas.create_line(30, height, width, height)
         canvas.create_line(30, 30, 30, height)
         canvas.create_line(width, 30, width, height)
-        ranky_spanky = (height - 30) / 100
+        rank_y = (height - 30) / 100
         for i in range(len(RANKINGS)):
-            canvas.create_text(10, height - (ranky_spanky * RANKINGS[i]), anchor=tkinter.NW, text=RANKINGS[i])
-            canvas.create_line(30, height - (ranky_spanky * RANKINGS[i]), width, height - (ranky_spanky * RANKINGS[i]))
+            canvas.create_text(10, height - (rank_y * RANKINGS[i]), anchor=tkinter.NW, text=RANKINGS[i])
+            canvas.create_line(30, height - (rank_y * RANKINGS[i]), width, height - (rank_y * RANKINGS[i]))
         return canvas
 
     def draw_ranks(self, canvas, width, height, fitness_matrix):

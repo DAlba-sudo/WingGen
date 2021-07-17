@@ -38,8 +38,8 @@ class WingVis():
 
     def toggle_fs(self, dummy=None):
         state = False if self.top.attributes('-fullscreen') else True
-        self.top.attributes('-fullscreen', state)
         if not state:
+            self.top.attributes('-fullscreen', state)
             self.top.geometry('300x300+100+100')
 
 
@@ -124,7 +124,6 @@ class WingVis():
                 x += move_by
                 rank_y = (rank_spacing * fitness_matrix[i-1])
                 rank_y2 = (rank_spacing * fitness_matrix[i])
-                print("yoooooooooooooooo")
                 #canvas.create_text((x_coordinate1 + TEXT_DX), rank_y, anchor=tkinter.SW, \
                                      #  text=f'Fitness: {fitness_matrix[i]}', fill="red")
                 canvas.create_line(x_move, rank_y, x_move2, rank_y2, fill="blue",
