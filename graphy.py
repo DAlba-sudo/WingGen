@@ -64,7 +64,6 @@ class GraphVis():
 
     def draw_ranks(self, canvas, width, height, fitness_matrix):
         rank_spacing = (height - 30) / 100
-        db.print("HOW HOW HOW ! " + str(rank_spacing))
         move_by = (width - 30) / len(fitness_matrix)
         x = move_by + 30
         for i in range(len(fitness_matrix)):
