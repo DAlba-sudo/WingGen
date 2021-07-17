@@ -1,6 +1,6 @@
 
 # simulation related settings
-POPULATION_SIZE             = 100       # size of initial population
+POPULATION_SIZE             = 10       # size of initial population
 DEATH_THRESH                = 0.7       # number of agents killed
 
 # wing related settings
@@ -10,5 +10,5 @@ Y_MAX                       = 150       # max-y dimension
 SPAWN_RATE_BLOCK            = 0.50       
 
 # misc. settings
-DEBUG = False
+DEBUG = True
 X_MOD, Y_MOD = 1, 1

@@ -110,30 +110,29 @@ class WingVis():
         return x_coordinate
 
     def draw_ranks(self, canvas, width, height, fitness_matrix):
-        #self.draw_graph(canvas, width, fitness_matrix, height)
         print('hello')
         width1 = width/2
         height1 = height/2
-        height = canvas.winfo_height()
-        canvas_height = height1 - (2 * GRAPH_MARGIN_SIZE)
-        canvas_width = width1 - (2 * GRAPH_MARGIN_SIZE)
         rank_spacing = (height - (35 * 10)) / 100
-        move_by = floor(width1 / len(RANKINGS))
+        move_by = floor(width1 / len(fitness_matrix))
         x = move_by + width1
         for i in range(len(fitness_matrix)):
-            delta_y = rank_spacing * fitness_matrix[i]
-            x_coordinate1 = x - move_by
-            x_coordinate2 = x
-            x += move_by
-            rank_y = (rank_spacing * fitness_matrix[i-1])
-            rank_y2 = (rank_spacing * fitness_matrix[i])
-            print("yoooooooooooooooo")
-            #canvas.create_text((x_coordinate1 + TEXT_DX), rank_y, anchor=tkinter.SW, \
-                                 #  text=f'Fitness: {fitness_matrix[i]}', fill="red")
-            canvas.create_line(x_coordinate1, rank_y, x_coordinate2, rank_y2, fill="blue",
-                                   width=LINE_WIDTH)
-            #canvas.create_text((x_coordinate2 + TEXT_DX), rank_y2, anchor=tkinter.SW, \
-                                 #  text=f'Fitness: {fitness_matrix[i]}', fill='green')
+            if i != 0:
+                x_move = floor((move_by * i - 1) + width1)
+                x_move2 = floor((move_by * i) + width1)
+                delta_y = rank_spacing * fitness_matrix[i]
+                x_coordinate1 = x - move_by
+                x_coordinate2 = x
+                x += move_by
+                rank_y = (rank_spacing * fitness_matrix[i-1])
+                rank_y2 = (rank_spacing * fitness_matrix[i])
+                print("yoooooooooooooooo")
+                #canvas.create_text((x_coordinate1 + TEXT_DX), rank_y, anchor=tkinter.SW, \
+                                     #  text=f'Fitness: {fitness_matrix[i]}', fill="red")
+                canvas.create_line(x_move, rank_y, x_move2, rank_y2, fill="blue",
+                                       width=LINE_WIDTH)
+                #canvas.create_text((x_coordinate2 + TEXT_DX), rank_y2, anchor=tkinter.SW, \
+                                     #  text=f'Fitness: {fitness_matrix[i]}', fill='green')
 
         canvas.update()
         return canvas

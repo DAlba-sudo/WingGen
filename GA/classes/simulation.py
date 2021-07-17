@@ -3,6 +3,7 @@ from PlaneGen import PlaneGen
 from random import choice, random
 from .agent import Agent
 from WingVis import WingVis
+from graphy import GraphVis
 from math import floor
 from settings import POPULATION_SIZE, DEATH_THRESH
 
@@ -155,5 +156,7 @@ class Simulation():
 
         #WingVis().visualize(self.popPool[max_agent].getGenes())
         WingVis().visualize(self.popPool[max_agent].getGenes(), self.fitnessMatrix)
+        GraphVis().visualize(self.popPool[max_agent].getGenes(), self.fitnessMatrix)
+
 
         
