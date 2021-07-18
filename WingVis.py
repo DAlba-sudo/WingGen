@@ -3,7 +3,7 @@ from tkinter.constants import Y
 from PlaneGen import PlaneGen
 import numpy as np
 from debug import Debug as db
-from settings import X_MOD, Y_MOD
+from settings import FULL_SCREEN, X_MOD, Y_MOD
 
 import tkinter as tkinter
 from math import floor
@@ -26,7 +26,8 @@ class WingVis():
         self.draw_grid_canvas(wing, ROW_NUM, COL_NUM, fitness_matrix)
 
     def draw_grid_canvas(self, wing, ROW_NUM, COL_NUM, fitness_matrix):
-        self.top.attributes('-fullscreen', True)
+        if FULL_SCREEN:
+            self.top.attributes('-fullscreen', True)
         width = 1000
         height = 500
         self.top.minsize(width, height)

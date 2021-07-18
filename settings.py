@@ -1,5 +1,8 @@
 
 # simulation related settings
+from tkinter.constants import FALSE
+
+
 POPULATION_SIZE             = 50        # size of initial population
 DEATH_THRESH                = 0.4       # number of agents killed
 
@@ -10,6 +13,6 @@ Y_MAX                       = 60       # max-y dimension
 SPAWN_RATE_BLOCK            = 0.50       
 
 # misc. settings
-FULL_SCREEN = True
+FULL_SCREEN = FALSE
 DEBUG = True
 X_MOD, Y_MOD = 1, 1
