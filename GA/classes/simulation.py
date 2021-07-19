@@ -55,7 +55,13 @@ class Simulation():
     def calcFitness(self, wing: numpy.ndarray):
         return self.__calcFitness(wing)
                 
-    
+    def square_fitness(self, wing: numpy.ndarray, sq_fitness):
+        for i in range(len(wing)):
+            sq_fitness.append(0)
+            if wing[i] == 1:
+                sq_fitness[i] = 1
+        return sq_fitness
+
     def __assignFitness(self):
         # 'global' vars
         sumFit = 0
