@@ -54,17 +54,6 @@ class Simulation():
     # public calcfitness
     def calcFitness(self, wing: numpy.ndarray):
         return self.__calcFitness(wing)
-                
-    # def square_fitness(self, wing: numpy.ndarray, sq_fitness):
-    #     for i in range(len(wing)):
-    #         sq_fitness.append(0)
-    #         if wing[i] == 1:
-    #             sq_fitness[i] = 1
-    #     print(sq_fitness)
-    #     return sq_fitness
-
-    #def probability_matrix(self, wing: numpy.ndarray, sq_fitness):
-
 
     def __assignFitness(self):
         # 'global' vars
@@ -123,9 +112,7 @@ class Simulation():
         x = choice(self.popPool)
         y = choice(self.popPool)
         parents.append(x)
-        #self.square_fitness(x, sq_fitness)
         parents.append(y)
-       # self.square_fitness(y, sq_fitness)
         return parents        
 
     # introduces children to population
@@ -136,10 +123,6 @@ class Simulation():
         # parents 
         p1:Agent = parents[0]
         p2:Agent = parents[1]
-
-        # split genes
-        X_MAX = max(len(p1.getGenes()[0]), len(p2.getGenes()[0]))
-        Y_MAX = max(len(p1.getGenes()), len(p2.getGenes()))
 
         # creates child
         child = Agent()
