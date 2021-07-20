@@ -55,7 +55,17 @@ class Simulation():
     def calcFitness(self, wing: numpy.ndarray):
         return self.__calcFitness(wing)
                 
-    
+    # def square_fitness(self, wing: numpy.ndarray, sq_fitness):
+    #     for i in range(len(wing)):
+    #         sq_fitness.append(0)
+    #         if wing[i] == 1:
+    #             sq_fitness[i] = 1
+    #     print(sq_fitness)
+    #     return sq_fitness
+
+    #def probability_matrix(self, wing: numpy.ndarray, sq_fitness):
+
+
     def __assignFitness(self):
         # 'global' vars
         sumFit = 0
@@ -107,10 +117,15 @@ class Simulation():
 
     # selects two random individuals
     def __select(self) -> list:
+        sq_fitness = []
         print("Choosing parents!")
         parents = []
-        parents.append(choice(self.popPool))
-        parents.append(choice(self.popPool))
+        x = choice(self.popPool)
+        y = choice(self.popPool)
+        parents.append(x)
+        #self.square_fitness(x, sq_fitness)
+        parents.append(y)
+       # self.square_fitness(y, sq_fitness)
         return parents        
 
     # introduces children to population

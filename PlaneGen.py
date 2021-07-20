@@ -92,6 +92,16 @@ class PlaneGen():
         wing, placed = PlaneGen.__randomFill()
         while not placed >= MINIMUM_BLOCKS_IN_WING:
             wing, placed = PlaneGen.__randomFill()
-
         # filter wing to reduce size
         return PlaneGen.__filterWing(wing)
+
+    # def cropWing(wing: np.ndarray):
+    #     #matrix of matricies
+    #     columns = {}
+    #     filtered_matrix = []
+    #     for i in range(len(wing)):
+    #         for j in range(len(wing[i])):
+    #             columns[str(i).format(i)].append(wing[i])
+    #     for k in range(len(columns)):
+    #         if columns[k] != 0:
+    #             filtered_matrix.append(columns[k])
