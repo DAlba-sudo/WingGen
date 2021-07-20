@@ -1,10 +1,10 @@
+from frontend.Vis.GraphVis import GraphVis
+from frontend.Vis.WingVis import WingVis
 from debug import Debug
 import numpy
 from PlaneGen import PlaneGen
 from random import choice, paretovariate, random, randrange
 from .agent import Agent
-from WingVis import WingVis
-from graphy import GraphVis
 from math import floor
 from settings import POPULATION_SIZE, DEATH_THRESH
 
