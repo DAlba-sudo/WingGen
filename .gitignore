@@ -9,6 +9,8 @@
 *.user
 *.userosscache
 *.sln.docstates
+
+# my files
 settings.py
 test.py
 main.py

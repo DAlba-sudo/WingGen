@@ -2,14 +2,14 @@ from tkinter.constants import X
 from typing import Tuple
 import numpy as np
 import random
-from settings import MINIMUM_BLOCKS_IN_WING, Y_MAX
+from settings import MINIMUM_BLOCKS_IN_WING, Y_MAX, X_MAX, SPAWN_RATE_BLOCK
 
 
 class PlaneGen():
     # parameters for wing creation
-    X_MAX = 60
-    Y_MAX = 150 
-    SPAWN_RATE_BLOCK = 0.50
+    X_MAX = X_MAX
+    Y_MAX = Y_MAX 
+    SPAWN_RATE_BLOCK = SPAWN_RATE_BLOCK
 
     # blank initializer
     def __init__(self) -> None:
@@ -72,7 +72,20 @@ class PlaneGen():
     # crops the wing matrix
     def __filterWing(wing: np.ndarray):
         return wing
-    
+
+    def toNumber(wing: np.ndarray):
+        # vars
+        wingOneD = PlaneGen.__convert(wing)
+        num = 0 # number representation of the wing
+        last_index = len(wingOneD)-1 # represents the index at the tail of the array
+
+        # scan from behind
+        for i in range(len(wingOneD)):
+            if wingOneD[last_index-i] == 1:
+                num += 2**i
+        
+        return num
+
     # util method for printing wings
     def printWing(wing: np.ndarray):
         for i in wing:
